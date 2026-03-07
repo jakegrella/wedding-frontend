@@ -52,25 +52,14 @@ export default function Home() {
           <FieldLabel htmlFor="code" className="sr-only">
             Code
           </FieldLabel>
-          <InputOTP maxLength={9} id="code" name="code">
-            <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-            </InputOTPGroup>
-            <InputOTPSeparator />
-            <InputOTPGroup>
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
-            </InputOTPGroup>
-            <InputOTPSeparator />
-            <InputOTPGroup>
-              <InputOTPSlot index={6} />
-              <InputOTPSlot index={7} />
-              <InputOTPSlot index={8} />
-            </InputOTPGroup>
-          </InputOTP>
+          <Input
+            id="code"
+            name="code"
+            type="text"
+            placeholder="Enter your code"
+            autoComplete="off"
+            required
+          />
           <Button type="submit">Enter</Button>
         </Field>
         {actionData?.error && <FieldError>{actionData.error}</FieldError>}

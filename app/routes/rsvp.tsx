@@ -54,7 +54,7 @@ export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   return { guestGroup };
 }
 
-export async function action({ request }: Route.ActionArgs) {
+export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
     const formData = await request.formData();
     // separate form data into groups based on guest id
@@ -73,7 +73,7 @@ export async function action({ request }: Route.ActionArgs) {
 
     // submit data for each guest to payload
     for (const [key, value] of groupData) {
-      await updateGuestInfo(request, key, value);
+      await updateGuestInfo(key, value);
     }
 
     return { success: true };

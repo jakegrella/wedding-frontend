@@ -42,8 +42,11 @@ export default function Home() {
 
   return (
     <main className="flex flex-col gap-20 items-center justify-center h-full">
-      <Form method="post" className="flex flex-col items-center gap-4">
-        <Field orientation="horizontal">
+      <Form
+        method="post"
+        className="flex flex-col sm:flex-row items-center gap-4"
+      >
+        <Field>
           <FieldLabel htmlFor="code" className="sr-only">
             Code
           </FieldLabel>
@@ -56,10 +59,10 @@ export default function Home() {
             disabled={isSubmitting}
             required
           />
-          <Button type="submit" loading={isSubmitting}>
-            Enter
-          </Button>
         </Field>
+        <Button type="submit" loading={isSubmitting}>
+          Enter
+        </Button>
         {actionData?.error && <FieldError>{actionData.error}</FieldError>}
       </Form>
     </main>

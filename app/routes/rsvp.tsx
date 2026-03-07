@@ -48,7 +48,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   const { user } = await me(request);
   const guestGroup = await getGroupInfo(request, user.id);
   return { guestGroup };

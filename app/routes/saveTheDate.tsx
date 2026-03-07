@@ -10,13 +10,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   const { user } = await me(request);
   return { groupName: user.name };
 }
 
 export default function SaveTheDate() {
-  const { groupName } = useLoaderData<typeof loader>();
+  const { groupName } = useLoaderData<typeof clientLoader>();
   const navigate = useNavigate();
 
   return (

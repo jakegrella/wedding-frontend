@@ -19,7 +19,7 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   try {
     const { user } = await me(request, false);
     if (user) return redirect(`/save-the-date`);
@@ -28,7 +28,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   }
 }
 
-export async function clientAction({ request }: Route.ActionArgs) {
+export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
     const formData = await request.formData();
 

@@ -4,8 +4,19 @@ import getPayloadTokenCookie from "./getPayloadTokenCookie";
 export async function getGroupInfo(request: Request, id: number) {
     const payload = new PayloadSDK({ baseURL: import.meta.env.VITE_BACKEND_URL || '' });
     const token = getPayloadTokenCookie(request);
+    const cookieHeader = request.headers.get("cookie") || request.headers.get("Cookie");
 
     try {
+        const headers: Record<string, string> = {};
+
+        if (cookieHeader) {
+            headers.cookie = cookieHeader;
+        }
+
+        if (token) {
+            headers.Authorization = `JWT ${token}`;
+        }
+
         const guestGroup = await payload.find(
             {
                 collection: "guest-groups",
@@ -15,9 +26,8 @@ export async function getGroupInfo(request: Request, id: number) {
                     }
                 },
             }, {
-            headers: {
-                Authorization: `JWT ${token}`,
-            },
+            credentials: "include",
+            headers,
         },
         );
 

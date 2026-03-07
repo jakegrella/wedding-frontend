@@ -19,7 +19,11 @@ export async function login(code: string) {
 
 export default async function logout() {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/guest-groups/logout?allSessions=true`,
-        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+        {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+        }
     );
 
     if (!res.ok) {
@@ -30,14 +34,24 @@ export default async function logout() {
 export async function me(request: Request, redirectOnFail = true): Promise<any | undefined> {
     const payload = new PayloadSDK({ baseURL: import.meta.env.VITE_BACKEND_URL || '' });
     const token = getPayloadTokenCookie(request);
+    const cookieHeader = request.headers.get("cookie") || request.headers.get("Cookie");
 
     try {
+        const headers: Record<string, string> = {};
+
+        if (cookieHeader) {
+            headers.cookie = cookieHeader;
+        }
+
+        if (token) {
+            headers.Authorization = `JWT ${token}`;
+        }
+
         const res = await payload.me(
             { collection: "guest-groups" },
             {
-                headers: {
-                    Authorization: `JWT ${token}`,
-                },
+                credentials: "include",
+                headers,
             },
         );
 

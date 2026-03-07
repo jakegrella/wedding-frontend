@@ -7,20 +7,20 @@
 
 @layer utilities {
   /* track = hotwheels track */
-  .scrollbar-custom::-webkit-scrollbar-track {
+  /* .scrollbar-custom::-webkit-scrollbar-track {
     @apply bg-transparent;
-  }
+  } */
 
     /* track = hotwheels car */
-  .scrollbar-custom::-webkit-scrollbar-thumb {
+  /* .scrollbar-custom::-webkit-scrollbar-thumb {
     background-image: url('/sb-wedding.jpg');
     background-repeat: no-repeat;
     background-size: 20px;
-  }
+  } */
 
-  .scrollbar-custom::-webkit-scrollbar {
+  /* .scrollbar-custom::-webkit-scrollbar {
     @apply w-8;
-  }
+  } */
 }
 
 button, a {

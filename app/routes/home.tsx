@@ -5,12 +5,6 @@ import { login, me } from "~/utils/auth";
 import type { Route } from "./+types/home";
 import { Input } from "~/components/ui/input";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "~/components/ui/input-otp";
 
 export function meta({}: Route.MetaArgs) {
   return [

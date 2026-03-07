@@ -1,13 +1,80 @@
+import { useState } from "react";
+import { Form, redirect, useActionData } from "react-router";
+import { Button } from "~/components/ui/button";
+import { login, me } from "~/utils/auth";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { Input } from "~/components/ui/input";
+import { Field, FieldError, FieldLabel } from "~/components/ui/field";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "~/components/ui/input-otp";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "JLO - Lauren & Jake's Wedding" },
+    { name: "description", content: "You're invited to our wedding!" },
   ];
 }
 
+export async function loader({ request }: Route.LoaderArgs) {
+  try {
+    const { user } = await me(request, false);
+    if (user) return redirect(`/save-the-date`);
+  } catch (error: any) {
+    console.error("Error checking authentication");
+  }
+}
+
+export async function clientAction({ request }: Route.ActionArgs) {
+  try {
+    const formData = await request.formData();
+
+    const code = formData.get("code");
+    if (!code) throw new Error("Code is required");
+    await login(String(code));
+
+    return redirect(`/save-the-date`);
+  } catch (error: any) {
+    return { error: error.message };
+  }
+}
+
 export default function Home() {
-  return <Welcome />;
+  const actionData = useActionData<{ error?: string }>();
+
+  return (
+    <main className="flex flex-col gap-20 items-center justify-center h-full">
+      <Form method="post" className="flex flex-col items-center gap-4">
+        <Field orientation="horizontal">
+          <FieldLabel htmlFor="code" className="sr-only">
+            Code
+          </FieldLabel>
+          <InputOTP maxLength={9} id="code" name="code">
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={6} />
+              <InputOTPSlot index={7} />
+              <InputOTPSlot index={8} />
+            </InputOTPGroup>
+          </InputOTP>
+          <Button type="submit">Enter</Button>
+        </Field>
+        {actionData?.error && <FieldError>{actionData.error}</FieldError>}
+      </Form>
+    </main>
+  );
 }

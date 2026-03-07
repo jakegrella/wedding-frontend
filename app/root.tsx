@@ -5,8 +5,8 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate,
 } from "react-router";
-
 import type { Route } from "./+types/root";
 import "./app.css";
 
@@ -19,11 +19,12 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=GFS+Didot&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap",
   },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const navigate = useNavigate();
   return (
     <html lang="en">
       <head>
@@ -32,8 +33,39 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="p-5 h-dvh font-sans font-light">
+        <style>{`
+          body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(/detailed-venue.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.2;
+          }
+        `}</style>
+        <a
+          className="absolute top-1 left-8 bg-background px-2 py-1 rounded-xl uppercase flex gap-4"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <span className="z-1">Lauren</span>
+          <span className="z-1">Jake</span>
+          <span className="font-serif text-3xl absolute -top-1 left-1/2 text-primary translate-x-0.5">
+            &
+          </span>
+        </a>
+        <div className="border border-foreground h-full overflow-y-auto scrollbar-custom rounded">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>

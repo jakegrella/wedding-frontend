@@ -1,4 +1,4 @@
-import { Form, redirect, useActionData } from "react-router";
+import { Form, redirect, useActionData, useNavigation } from "react-router";
 import { Button } from "~/components/ui/button";
 import { login, me } from "~/utils/auth";
 import type { Route } from "./+types/home";
@@ -37,6 +37,8 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 export default function Home() {
   const actionData = useActionData<{ error?: string }>();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   return (
     <main className="flex flex-col gap-20 items-center justify-center h-full">
@@ -51,9 +53,12 @@ export default function Home() {
             type="text"
             placeholder="Enter your code"
             autoComplete="off"
+            disabled={isSubmitting}
             required
           />
-          <Button type="submit">Enter</Button>
+          <Button type="submit" loading={isSubmitting}>
+            Enter
+          </Button>
         </Field>
         {actionData?.error && <FieldError>{actionData.error}</FieldError>}
       </Form>

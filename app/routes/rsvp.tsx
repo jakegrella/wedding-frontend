@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, useLoaderData } from "react-router";
+import { Form, useLoaderData, useNavigation } from "react-router";
 import Checkbox from "~/components/Checkbox";
 import SpotifyLink from "~/components/SpotifyLink";
 import { Button } from "~/components/ui/button";
@@ -85,6 +85,8 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
 export default function Rsvp() {
   const { guestGroup } = useLoaderData<LoaderData>();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   type GuestFormState = {
     id: string;
@@ -175,6 +177,7 @@ export default function Rsvp() {
                       name={`${guest.id}-rsvpStatus`}
                       value="accepted"
                       checked={guest.rsvpStatus === "accepted"}
+                      disabled={isSubmitting}
                       onChange={(e) => {
                         updateGuestAttendanceState(
                           guest.id,
@@ -190,6 +193,7 @@ export default function Rsvp() {
                       name={`${guest.id}-rsvpStatus`}
                       value="declined"
                       checked={guest.rsvpStatus === "declined"}
+                      disabled={isSubmitting}
                       onChange={(e) => {
                         updateGuestAttendanceState(
                           guest.id,
@@ -214,6 +218,7 @@ export default function Rsvp() {
                         id={`${guest.id}-dietaryRestrictions`}
                         name={`${guest.id}-dietaryRestrictions`}
                         value={guest.dietaryRestrictions}
+                        disabled={isSubmitting}
                         onChange={(e) => {
                           const updatedGuests = formState.map((g) =>
                             g.id === guest.id
@@ -233,6 +238,7 @@ export default function Rsvp() {
                         name={`${guest.id}-comment`}
                         value={guest.comment}
                         placeholder="Leave a comment for us..."
+                        disabled={isSubmitting}
                         onChange={(e) => {
                           const updatedGuests = formState.map((g) =>
                             g.id === guest.id
@@ -251,7 +257,9 @@ export default function Rsvp() {
             );
           })}
         </FieldGroup>
-        <Button type="submit">Update RSVP</Button>
+        <Button type="submit" loading={isSubmitting}>
+          Update RSVP
+        </Button>
       </Form>
       <div>
         <h2 className="text-xl">FAQ</h2>

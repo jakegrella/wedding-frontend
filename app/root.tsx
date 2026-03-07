@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           body::before {
             content: '';
             position: fixed;
-            top: 0;
+            top: 10%;
             left: 0;
             width: 100%;
             height: 100%;

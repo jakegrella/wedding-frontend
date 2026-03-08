@@ -22,6 +22,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
+import { toast } from "sonner";
 
 type Guest = {
   id: string;
@@ -76,9 +77,11 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       await updateGuestInfo(key, value);
     }
 
+    toast.success("RSVP updated successfully.");
     return { success: true };
   } catch (error: any) {
     console.error("Error in action:", error.message);
+    toast.error("An unexpected error occurred. Please try again.");
     return { error: "An unexpected error occurred. Please try again." };
   }
 }

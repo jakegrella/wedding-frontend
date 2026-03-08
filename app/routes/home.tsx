@@ -4,6 +4,7 @@ import { login, me } from "~/utils/auth";
 import type { Route } from "./+types/home";
 import { Input } from "~/components/ui/input";
 import { Field, FieldError, FieldLabel } from "~/components/ui/field";
+import { toast } from "sonner";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -28,9 +29,11 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     const code = formData.get("code");
     if (!code) throw new Error("Code is required");
     await login(String(code));
+    toast.success("Successfully logged in");
 
     return redirect(`/save-the-date`);
   } catch (error: any) {
+    toast.error("An error occurred.");
     return { error: error.message };
   }
 }

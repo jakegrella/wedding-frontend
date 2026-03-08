@@ -86,7 +86,7 @@ button, a {
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0.014 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0.014 240);
+  --popover-foreground: oklch(0.3507 0.0572 242.37);
   --primary: oklch(0.7272 0.1188 221.99);
   --primary-foreground: oklch(0.985 0.004 247.86);
   --secondary: oklch(0.967 0.015 247.86);

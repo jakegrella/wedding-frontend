@@ -10,6 +10,11 @@ export function meta({}: Route.MetaArgs) {
   return [
     { title: "JLO - Lauren & Jake's Wedding" },
     { name: "description", content: "You're invited to our wedding!" },
+    { property: "og:image", content: "/logo.jpg" },
+    { property: "og:title", content: "JLO - Lauren & Jake's Wedding" },
+    { property: "og:description", content: "You're invited to our wedding!" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:image", content: "/logo.jpg" },
   ];
 }
 

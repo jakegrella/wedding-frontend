@@ -49,7 +49,7 @@ export default function SaveTheDate() {
         >
           RSVP
         </Button>
-        <p className="text-xs pt-2">Please RSVP by June 1, 2026</p>
+        <p className="text-xs pt-2">Please RSVP by May 15, 2026</p>
       </div>
     </main>
   );

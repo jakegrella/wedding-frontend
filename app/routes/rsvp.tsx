@@ -133,24 +133,31 @@ export default function Rsvp() {
       value: "travel",
       trigger: "How do I get there?",
       content:
-        "The closest airport to Santa Barbara is the Santa Barbara Airport (SBA), which has direct flights from several major cities, including Chicago (ORD). Alternatively, you can fly into . The airport with the most nonstop flight options into Southern California is Los Angeles International Airport (LAX), and is about a 2 hour drive north up the coast to Santa Barbara.",
+        "The closest airport to Santa Barbara is the Santa Barbara Airport (SBA), which has direct flights from several major cities, including Chicago (ORD). Alternatively, you can fly into LAX, LGB, or BUR. The airport with the most nonstop flight options into Southern California is Los Angeles International Airport (LAX), and is about a 2 hour scenic drive north up the coast to Santa Barbara.",
     },
     {
       value: "accommodation",
       trigger: "Where should I stay?",
       content:
-        "We are not booking any specific accommodations. If you have any trouble booking or need assistance, please let us know!",
+        "We are not booking any specific group accommodations. We have not booked our own stay yet, but will update here when we do. Staying near State Street will give you the best access to local attractions and dining options. There are also many great Airbnbs in the area. If you have any trouble booking or need assistance, please let us know.",
     },
     {
       value: "ceremony",
       trigger: "Where is the ceremony?",
       content:
-        "The ceremony and reception will be held at the Palm Park Beach House, which is located just outside downtown Santa Barbara along the waterfront. The address is 236 E Cabrillo Blvd, Santa Barbara, CA 93101.",
+        "The ceremony and reception will be held at the Palm Park Beach House, which is located just outside downtown Santa Barbara along the waterfront. The address is 236 E Cabrillo Blvd, Santa Barbara, CA 93101. There is street parking in front of the venue and a public parking lot next door.",
     },
     {
       value: "attire",
       trigger: "What should I wear?",
-      content: "The dress code for the wedding is beachy and semi-formal. ",
+      content:
+        "The dress code for the wedding is beachy, colorful, and semi-formal. Feel free to express your style and have fun with it! We recommend bringing a light jacket or sweater for the evening, as it can get cool by the water.",
+    },
+    {
+      value: "itinerary",
+      trigger: "What does the rest of the weekend look like?",
+      content:
+        "We are still working on complete details, but we will be in Santa Barbara from Wednesday until Sunday. Our current plan is to have welcome drinks on Wednesday night at a local bar, meet for brunch on Friday, and have a hike and a beach outing in there as well. There will be evening fireworks on Saturday for the 4th of July. You are welcome to join us for any, all, or none of the events. Other fun things to do in Santa Barbara include strolling along State Street, taking a scenic drive in the mountains, or visiting the Santa Barbara Zoo, Stearns Wharf, Santa Barbara Botanic Garden, or Santa Barbara Mission. We will be sharing more itinerary details as we get closer to the date.",
     },
   ];
 
@@ -159,7 +166,7 @@ export default function Rsvp() {
       <div>
         <p>RSVP for</p>
         <h1 className="text-primary text-3xl font-serif">{guestGroup.name}</h1>
-        <p className="text-xs">Please RSVP by June 1, 2026</p>
+        <p className="text-xs">Please RSVP by May 15, 2026</p>
       </div>
 
       <Form method="post" className="w-full">

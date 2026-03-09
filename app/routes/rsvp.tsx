@@ -145,7 +145,7 @@ export default function Rsvp() {
       value: "ceremony",
       trigger: "Where is the ceremony?",
       content:
-        "The ceremony and reception will be held at the Palm Park Beach House, which is located just outside downtown Santa Barbara along the waterfront. The address is 236 E Cabrillo Blvd, Santa Barbara, CA 93101. There is street parking in front of the venue and a public parking lot next door.",
+        "The ceremony and reception will be held at the Palm Park Beach House, which is located just outside downtown Santa Barbara along the waterfront. The address is 236 E Cabrillo Blvd, Santa Barbara, CA 93101. There is street parking in front of the venue and a paid public parking lot next door.",
     },
     {
       value: "attire",

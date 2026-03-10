@@ -154,6 +154,12 @@ export default function Rsvp() {
         "The dress code for the wedding is beachy, colorful, and semi-formal. Feel free to express your style and have fun with it! We recommend bringing a light jacket or sweater for the evening, as it can get cool by the water.",
     },
     {
+      value: "gifts",
+      trigger: "What should I get you as a gift?",
+      content:
+        "Having you with us on our wedding day is the greatest gift we could receive. Your presence is all we could ask for. We kindly request no gifts.",
+    },
+    {
       value: "itinerary",
       trigger: "What does the rest of the weekend look like?",
       content:
